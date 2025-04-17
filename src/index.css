@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 100% 17%; /* darkBlue for main text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 100% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 100% 17%;
+
+    --primary: 240 100% 17%; /* darkBlue */
+    --primary-foreground: 60 100% 50%; /* yellow */
+
+    --secondary: 60 100% 50%; /* yellow */
+    --secondary-foreground: 240 100% 17%; /* darkBlue */
+
+    --muted: 225 56% 46%; /* lightBlue */
+    --muted-foreground: 0 0% 100%;
+
+    --accent: 222 71% 46%; /* blue */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 100% 17%;
+    --input: 240 100% 17%;
+    --ring: 240 100% 17%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-white text-darkBlue font-sans;
+  }
+}
+
+@layer components {
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+  
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+  
+  .heading-md {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+  
+  .container-custom {
+    @apply container px-4 md:px-6 lg:px-8 mx-auto max-w-7xl;
+  }
+  
+  /* Primary button with dark blue background and yellow text */
+  .btn-primary {
+    @apply bg-darkBlue hover:bg-darkBlue/90 text-yellow px-6 py-3 rounded-md font-medium transition-all duration-200 inline-flex items-center justify-center;
+  }
+  
+  /* Secondary button with yellow background and dark blue text */
+  .btn-secondary {
+    @apply bg-yellow hover:bg-yellow/90 text-darkBlue px-6 py-3 rounded-md font-medium transition-all duration-200 inline-flex items-center justify-center shadow-md;
+  }
+
+  /* Alternate primary button with yellow background */
+  .btn-primary-alt {
+    @apply bg-yellow hover:bg-yellow/90 text-darkBlue px-6 py-3 rounded-md font-medium transition-all duration-200 inline-flex items-center justify-center shadow-md;
+  }
+
+  /* Alternate secondary button with dark blue border */
+  .btn-secondary-alt {
+    @apply border-2 border-darkBlue text-darkBlue hover:bg-darkBlue hover:text-yellow px-6 py-3 rounded-md font-medium transition-all duration-200 inline-flex items-center justify-center;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+}
+
+/* Animate elements when they come into view */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
