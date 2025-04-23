@@ -3,9 +3,11 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import CourseCategories from '@/components/CourseCategories';
 import WhyChooseUs from '@/components/WhyChooseUs';
+import CoCurricularApproach from '@/components/CoCurricularApproach';
 import Testimonials from '@/components/Testimonials';
 import EnquiryForm from '@/components/EnquiryForm';
 import Footer from '@/components/Footer';
+import FloatingIcons from '@/components/FloatingIcons';
 
 const Index = () => {
   // Function to handle animation on scroll
@@ -36,10 +38,12 @@ const Index = () => {
         <Hero />
         <CourseCategories />
         <WhyChooseUs />
+        <CoCurricularApproach />
         <Testimonials />
         <EnquiryForm />
       </main>
       <Footer />
+      <FloatingIcons />
     </div>
   );
 };

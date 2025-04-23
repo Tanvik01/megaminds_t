@@ -3,8 +3,10 @@ import { ArrowRight, BookOpen, Users, Award } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import useEmblaCarousel from 'embla-carousel-react';
 
+
 const Hero = () => {
   const [api, setApi] = useState<any>(null);
+  
 
   useEffect(() => {
     if (!api) return;
@@ -37,7 +39,7 @@ const Hero = () => {
               <a href="#courses" className="btn-primary">
                 Browse Courses <ArrowRight className="ml-2 h-5 w-5" />
               </a>
-              <a href="#about" className="btn-secondary">
+              <a href="#enquiry" className="btn-secondary">
                 Enroll Now
               </a>
             </div>
@@ -61,8 +63,7 @@ const Hero = () => {
                 <div className="bg-darkBlue p-3 rounded-full mb-2 shadow-md">
                   <Award className="h-6 w-6 text-yellow" />
                 </div>
-                <span className="font-bold text-xl text-darkBlue">80+
-                </span>
+                <span className="font-bold text-xl text-darkBlue">80+</span>
                 <span className="text-sm text-lightBlue text-center">Activities</span>
               </div>
             </div>
@@ -99,20 +100,15 @@ const Hero = () => {
                   </div>
                 </CarouselItem>
               </CarouselContent>
-              <CarouselPrevious className="left-2 bg-darkBlue text-yellow hover:bg-darkBlue/90" />
-              <CarouselNext className="right-2 bg-darkBlue text-yellow hover:bg-darkBlue/90" />
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
             </Carousel>
             
             {/* Floating card */}
             <div className="absolute -bottom-6 -left-6 bg-yellow p-4 rounded-lg shadow-lg max-w-xs">
               <div className="flex items-center">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="w-10 h-10 rounded-full bg-darkBlue border-2 border-white flex items-center justify-center overflow-hidden">
-                      <span className="text-xs font-bold text-yellow">{i}</span>
-                    </div>
-                  ))}
-                </div>
+                
+                
                 <div className="ml-2">
                   <p className="text-sm font-medium text-darkBlue">Join 1000+ students who transformed their future</p>
                 </div>

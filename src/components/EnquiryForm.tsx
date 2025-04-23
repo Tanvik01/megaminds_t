@@ -184,7 +184,8 @@ const EnquiryForm = () => {
                   </div>
                   <div>
                     <p className="text-yellow text-sm">Email Us</p>
-                    <a href="mailto:contact@megaminds.edu" className="text-yellow hover:underline">ingo@megaminds.in</a>
+                    <a href="mailto:contact@megaminds.edu" className="text-yellow hover:underline">megamindsacademyhup@gmail.com
+                    </a>
                   </div>
                 </div>
                 
@@ -194,7 +195,8 @@ const EnquiryForm = () => {
                   </div>
                   <div>
                     <p className="text-yellow text-sm">Call Us</p>
-                    <a href="tel:+919876543210" className="text-yellow hover:underline">+91 98765 43210</a>
+                    <a href="tel:+9189772 17554" className="text-yellow hover:underline">+91 89772 17554</a><br></br>
+                    <a href="tel:+9177997 76119" className="text-yellow hover:underline">+91 77997 76119</a>
                   </div>
                 </div>
                 

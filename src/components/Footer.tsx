@@ -24,9 +24,6 @@ const Footer = () => {
                 <Instagram className="h-5 w-5" />
               </a>
               <a href="#" className="bg-navy/30 hover:bg-navy p-2 rounded-full transition-all">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-navy/30 hover:bg-navy p-2 rounded-full transition-all">
                 <Youtube className="h-5 w-5" />
               </a>
               <a href="#" className="bg-navy/30 hover:bg-navy p-2 rounded-full transition-all">
@@ -42,7 +39,7 @@ const Footer = () => {
               <li><a href="#" className="text-white/70 hover:text-white transition-all">About Us</a></li>
               <li><a href="#courses" className="text-white/70 hover:text-white transition-all">Courses</a></li>
               <li><a href="#" className="text-white/70 hover:text-white transition-all">Gallery</a></li>
-              <li><a href="#" className="text-white/70 hover:text-white transition-all">Resources</a></li>
+          
               <li><a href="#enquiry" className="text-white/70 hover:text-white transition-all">Contact</a></li>
             </ul>
           </div>
@@ -67,7 +64,11 @@ const Footer = () => {
               </p>
               <p className="flex items-center text-white/70">
               <Phone className="h-4 w-4 mr-2" />
-                <span>+91 9876543210</span></p>
+                <span>+91 8977217554</span>
+                </p>
+                <p className="flex items-center text-white/70">
+              <Phone className="h-4 w-4 mr-2" />
+                <span>+91 7799776119</span></p>
             </div>
            
           
