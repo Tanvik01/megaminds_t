@@ -9,6 +9,7 @@ import {
   MapPinIcon,
   ClockIcon 
 } from '@heroicons/react/24/outline';
+import { FiPhone } from 'react-icons/fi';
 
 const Contact: React.FC = () => {
   const contactInfo = [
@@ -86,12 +87,53 @@ const Contact: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className={`w-12 h-12 ${info.color} rounded-lg flex items-center justify-center mb-4`}>
-                    <info.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-darkBlue mb-2">{info.title}</h3>
+                  {info.title === 'Phone' ? (
+                    <div className="flex justify-center mb-4">
+                      <div
+                        style={{
+                          width: '56px',
+                          height: '56px',
+                          background: '#2563EB',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          border: '2px solid #2563EB',
+                          fontSize: '2rem',
+                          color: '#fff',
+                        }}
+                      >
+                        <FiPhone className="w-7 h-7 text-white z-10" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex justify-center mb-4">
+                      <div className={`w-14 h-14 ${info.color} rounded-full flex items-center justify-center`}>
+                        <info.icon className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+                  )}
+                  <h3 className="text-xl font-semibold text-darkBlue mb-2 text-center">{info.title}</h3>
                   {info.details.map((detail, idx) => (
-                    <p key={idx} className="text-gray-600">{detail}</p>
+                    info.title === 'Email' ? (
+                      <div key={idx} className="relative group flex justify-center">
+                        <a
+                          href={`mailto:${detail}`}
+                          className="text-gray-600 text-center truncate max-w-[180px] mx-auto cursor-pointer hover:underline"
+                          tabIndex={0}
+                        >
+                          {detail}
+                        </a>
+                        <span
+                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-max max-w-xs px-3 py-1.5 rounded bg-darkBlue text-white text-xs opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition pointer-events-none z-50 shadow-lg"
+                          style={{ whiteSpace: 'pre' }}
+                        >
+                          {detail}
+                        </span>
+                      </div>
+                    ) : (
+                      <p key={idx} className="text-gray-600 text-center">{detail}</p>
+                    )
                   ))}
                 </motion.div>
               ))}
@@ -120,27 +162,15 @@ const Contact: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="max-w-4xl mx-auto"
+              className="max-w-6xl mx-auto"
             >
-              <div className="bg-white rounded-2xl shadow-lg p-8">
-                <EnquiryForm />
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div className="p-8 md:p-10">
+                  <EnquiryForm />
+                </div>
               </div>
             </motion.div>
           </div>
-        </section>
-
-        {/* Map Section */}
-        <section className="h-[400px] relative">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.9151391701287!2d78.38819731487856!3d17.427265588055036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb915c9b6a0b0f%3A0x1c2b6b1c6b8b8b8b!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="absolute inset-0"
-          ></iframe>
         </section>
       </main>
       <Footer />
@@ -148,4 +178,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact; 
+export default Contact;

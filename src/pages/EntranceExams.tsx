@@ -135,7 +135,7 @@ const EntranceExams = () => {
               <a href="/contact" className="btn-primary bg-white text-indigo-600 hover:bg-darkBlue-50">
                 Schedule a Free Demo Class
               </a>
-              <a href="/contact" className="btn-secondary border-white text-white hover:bg-white/10">
+              <a href="/contact" className="btn-secondary border-white text-darkBlue hover:bg-white/10">
                 Get in Touch
               </a>
             </div>
