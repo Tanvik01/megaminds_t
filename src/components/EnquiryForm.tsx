@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
-import { Calendar, Mail, Phone, Send, Check } from 'lucide-react';
+import { Calendar, Mail, Send, Check } from 'lucide-react';
+import { DevicePhoneMobileIcon } from '@heroicons/react/24/outline';
 import { toast } from 'sonner';
 
 const EnquiryForm = () => {
@@ -25,13 +25,11 @@ const EnquiryForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       toast.success("Enquiry submitted successfully!");
       
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -40,7 +38,6 @@ const EnquiryForm = () => {
         message: '',
       });
       
-      // Reset submission status after a while
       setTimeout(() => setIsSubmitted(false), 3000);
     }, 1500);
   };
@@ -72,7 +69,7 @@ const EnquiryForm = () => {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <form onSubmit={handleSubmit} className="p-6 md:p-8">
                 <div className="mb-4">
-                  <label htmlFor="name" className="block text-sm font-medium mb-1">Full Name *</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
                   <input
                     type="text"
                     id="name"
@@ -80,66 +77,75 @@ const EnquiryForm = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-beige rounded-md focus:outline-none focus:ring-1 focus:ring-navy"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter your full name"
                   />
                 </div>
                 
-                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-1">Email Address *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-beige rounded-md focus:outline-none focus:ring-1 focus:ring-navy"
-                      placeholder="email@example.com"
-                    />
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="email@example.com"
+                      />
+                    </div>
                   </div>
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-1">Phone Number *</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-beige rounded-md focus:outline-none focus:ring-1 focus:ring-navy"
-                      placeholder="Your phone number"
-                    />
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                    <div className="relative">
+                      <DevicePhoneMobileIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Your phone number"
+                      />
+                    </div>
                   </div>
                 </div>
                 
-                <div className="mb-4">
-                  <label htmlFor="course" className="block text-sm font-medium mb-1">Interested Course *</label>
-                  <select
-                    id="course"
-                    name="course"
-                    value={formData.course}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2 border border-beige rounded-md focus:outline-none focus:ring-1 focus:ring-navy"
-                  >
-                    <option value="" disabled>Select a course</option>
-                    {courses.map((course, index) => (
-                      <option key={index} value={course}>{course}</option>
-                    ))}
-                  </select>
+                <div>
+                  <label htmlFor="course" className="block text-sm font-medium text-gray-700 mb-1">Interested Course *</label>
+                  <div className="relative">
+                    <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <select
+                      id="course"
+                      name="course"
+                      value={formData.course}
+                      onChange={handleChange}
+                      required
+                      className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                    >
+                      <option value="" disabled>Select a course</option>
+                      {courses.map((course, index) => (
+                        <option key={index} value={course}>{course}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
                 
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-medium mb-1">Message (Optional)</label>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-2 border border-beige rounded-md focus:outline-none focus:ring-1 focus:ring-navy"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Any specific requirements or questions?"
                   ></textarea>
                 </div>
@@ -147,26 +153,26 @@ const EnquiryForm = () => {
                 <button 
                   type="submit" 
                   disabled={isSubmitting || isSubmitted}
-                  className="w-full btn-primary"
+                  className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
                 >
                   {isSubmitting ? (
-                    <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <>
+                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Processing...
-                    </span>
+                      <span>Processing...</span>
+                    </>
                   ) : isSubmitted ? (
-                    <span className="flex items-center justify-center">
-                      <Check className="mr-2 h-4 w-4" />
-                      Submitted
-                    </span>
+                    <>
+                      <Check className="h-5 w-5" />
+                      <span>Submitted</span>
+                    </>
                   ) : (
-                    <span className="flex items-center justify-center">
-                      <Send className="mr-2 h-4 w-4" />
-                      Submit Enquiry
-                    </span>
+                    <>
+                      <Send className="h-5 w-5" />
+                      <span>Submit Enquiry</span>
+                    </>
                   )}
                 </button>
               </form>
@@ -191,7 +197,7 @@ const EnquiryForm = () => {
                 
                 <div className="flex items-start">
                   <div className="bg-darkBlue/95 p-3 rounded-full mr-4">
-                    <Phone className="h-6 w-6 text-yellow" />
+                    <DevicePhoneMobileIcon className="h-6 w-6 text-yellow" />
                   </div>
                   <div>
                     <p className="text-yellow text-sm">Call Us</p>

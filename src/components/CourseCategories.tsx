@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight, BookOpen, CodeIcon, GraduationCap, Languages, PenTool } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -7,37 +6,37 @@ const categories = [
   {
     icon: BookOpen,
     title: "School Tuitions",
-    description: "Expert guidance for all school subjects from grades 6-12",
+    description: "Expert guidance for all school subjects from grades 1-12",
     color: "bg-[#FFF1D0] text-[#FF8A00]",
-    link: "#",
+    link: "/courses/school-tuitions",
   },
   {
     icon: GraduationCap,
     title: "Entrance Exams",
     description: "Specialized coaching for JEE, NEET, and other entrance exams",
     color: "bg-[#E1F0FF] text-[#0066CC]",
-    link: "#",
+    link: "/courses/entrance-exams",
   },
   {
     icon: Languages,
     title: "Communication Skills",
     description: "English proficiency, public speaking, and personality development",
     color: "bg-[#E5F8E5] text-[#2D8E2D]",
-    link: "#",
+    link: "/courses/communication-courses",
   },
   {
     icon: CodeIcon,
     title: "Tech Courses",
     description: "Programming, web development, and computer applications",
     color: "bg-[#F6E5FF] text-[#8E2DCC]",
-    link: "#",
+    link: "/courses/tech-courses",
   },
   {
     icon: PenTool,
     title: "Competitive Exams",
     description: "Preparation for banking, SSC, UPSC, and other government exams",
     color: "bg-[#FFE5E5] text-[#CC2D2D]",
-    link: "#",
+    link: "/courses/competitive-exams",
   },
 ];
 

@@ -5,32 +5,32 @@ const testimonials = [
   {
     name: " Bhavesh",
     role: "Class 10th Student",
-    image: " man.png",
+    image: "/man.png",
     content:"Mega Minds helped me improve my confidence in math and science. The teachers are so patient and explain everything clearly. I actually look forward to classes now!"
   },
   {
     name: " Farheen S.",
     role: "NEET Aspirant",
-    image: " girl.png",
+    image: "/girl.png",
     content:"Thanks to the Olympiad prep course, I won a silver medal in the national science competition. The trainers motivated me and made learning fun!"
   },
   {
     name: "Sohaib",
     role: "Parent of a class 12 student",
-    image: "man.png",
-    content: "My daughter used to fear public speaking, but after joining the communication skills course, she hosted her school’s annual day! The transformation is amazing."
+    image: "/man.png",
+    content: "My daughter used to fear public speaking, but after joining the communication skills course, she hosted her school's annual day! The transformation is amazing."
   },
   {
     name: "Tahir",
     role: "JEE Aspirant",
-    image: "man.png",
+    image: "/man.png",
     content: "The entrance exam coaching here is excellent. They break down complex concepts and give us lots of practice material. The mock tests gave me the confidence I needed."
   },
   {
     name: " Lakshmi Devi",
     role: "Parent",
-    image: "girl.png",
-    content: "We tried a few coaching centers before, but Mega Minds stood out for their personal attention to each student. They really care about a child’s overall growth, not just marks."
+    image: "/girl.png",
+    content: "We tried a few coaching centers before, but Mega Minds stood out for their personal attention to each student. They really care about a child's overall growth, not just marks."
   },
 ];
 

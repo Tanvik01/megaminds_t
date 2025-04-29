@@ -10,7 +10,7 @@ const Footer = () => {
           <div>
             <div className="mb-4">
               <a href="/" className="flex items-center">
-                <span className="text-yellow font-bold text-2xl">MEGA<span className="text-yellow">MINDS</span></span>
+                <span className="text-yellow font-bold text-2xl">MEGA<span className="text-yellow">MINDS </span><span className='text-yellow'>ACADEMY </span></span>
               </a>
             </div>
             <p className="text-white mb-6">

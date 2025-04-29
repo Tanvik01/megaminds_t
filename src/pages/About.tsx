@@ -17,7 +17,7 @@ const About = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="animate-slide-in">
                 <h1 className="heading-xl mb-8 text-darkBlue">
-                  Empowering Young Minds to Build a Brighter Future
+                  Empowering Young Minds
                 </h1>
                 <div className="space-y-4">
                   <p className="text-lg text-black">
@@ -37,6 +37,8 @@ const About = () => {
                     src="/mma_logo.png" 
                     alt="MegaMinds Academy Logo" 
                     className="w-full h-full object-contain bg-white p-6"
+                    width={300}
+                    height={300}
                   />
                 </div>
               </div>
@@ -84,7 +86,7 @@ const About = () => {
                   <Clock className="h-6 w-6 text-yellow" />
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-darkBlue"> Personalized Learning</h3>
-                <p className="text-lightBlue">We embrace each student’s unique pace and path, offering customized support that brings out the best in every mind.</p>
+                <p className="text-lightBlue">We embrace each student's unique pace and path, offering customized support that brings out the best in every mind.</p>
               </div>
               <div className="bg-cream p-6 rounded-xl shadow-md hover:shadow-xl transition-all animate-slide-in [animation-delay:400ms]">
                 <div className="bg-darkBlue p-3 rounded-full w-fit mb-4">
@@ -148,6 +150,8 @@ const About = () => {
                   src="/mma_logo.png" 
                   alt="MegaMinds Academy" 
                   className="h-24 w-auto"
+                  width={96}
+                  height={96}
                 />
               </div>
             </div>

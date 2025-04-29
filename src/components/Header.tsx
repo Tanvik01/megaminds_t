@@ -3,6 +3,40 @@ import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { PhoneIcon } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
+import { BookOpen, GraduationCap, Languages, CodeIcon, PenTool } from 'lucide-react';
+
+const categories = [
+  {
+    icon: BookOpen,
+    title: "School Tuitions",
+    description: "Expert guidance for all school subjects from grades 1-12",
+    link: "/courses/school-tuitions",
+  },
+  {
+    icon: GraduationCap,
+    title: "Entrance Exams",
+    description: "Specialized coaching for JEE, NEET, and other entrance exams",
+    link: "/courses/entrance-exams",
+  },
+  {
+    icon: Languages,
+    title: "Communication Skills",
+    description: "English proficiency, public speaking, and personality development",
+    link: "/courses/communication-skills",
+  },
+  {
+    icon: CodeIcon,
+    title: "Tech Courses",
+    description: "Programming, web development, and computer applications",
+    link: "/courses/tech-courses",
+  },
+  {
+    icon: PenTool,
+    title: "Competitive Exams",
+    description: "Preparation for banking, SSC, UPSC, and other government exams",
+    link: "/courses/competitive-exams",
+  },
+];
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -62,6 +96,7 @@ const Header = () => {
           </Link>
         </div>
       </nav>
+
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-darkBlue/10">
@@ -87,6 +122,7 @@ const Header = () => {
                     key={item.name}
                     to={item.href}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-darkBlue hover:bg-yellow/10"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
