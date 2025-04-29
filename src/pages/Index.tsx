@@ -8,6 +8,7 @@ import Testimonials from '@/components/Testimonials';
 import EnquiryForm from '@/components/EnquiryForm';
 import Footer from '@/components/Footer';
 import FloatingIcons from '@/components/FloatingIcons';
+import CTA from '@/components/CTA';
 
 const Index = () => {
   // Function to handle animation on scroll
@@ -40,7 +41,7 @@ const Index = () => {
         <WhyChooseUs />
         <CoCurricularApproach />
         <Testimonials />
-        <EnquiryForm />
+        <CTA></CTA>
       </main>
       <Footer />
       <FloatingIcons />

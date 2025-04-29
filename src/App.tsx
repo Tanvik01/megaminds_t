@@ -13,6 +13,7 @@ import CompetitiveExams from "@/pages/CompetitiveExams";
 import CommunicationCourses from "@/pages/CommunicationCourses";
 import Courses from "@/pages/Courses";
 import TechCourses from "@/pages/TechCourses";
+import Gallery from "@/pages/Gallery";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/school-tuitions" element={<SchoolTuitions />} />
             <Route path="/courses/entrance-exams" element={<EntranceExams />} />
