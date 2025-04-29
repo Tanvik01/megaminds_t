@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { PageHero } from '../components/PageHero';
-import { ZoomIn, ZoomOut, X, Share2, Copy, Download, ImageIcon } from 'lucide-react';
+import { ZoomIn, ZoomOut, X, Share2, Copy, Download, ImageIcon, Move } from 'lucide-react';
 
 // Import all images from assets folder
 import img1 from '../assests/WhatsApp Image 2025-04-29 at 21.00.48_56c416d6.jpg';
@@ -117,10 +117,30 @@ const Gallery = () => {
   const [shareTooltip, setShareTooltip] = useState('');
   const [modalImage, setModalImage] = useState<string | null>(null);
   
+  // State for panning
+  const [panPosition, setPanPosition] = useState({ x: 0, y: 0 });
+  const [isPanning, setIsPanning] = useState(false);
+  const [startPanPosition, setStartPanPosition] = useState({ x: 0, y: 0 });
+  const [showPanHint, setShowPanHint] = useState(false);
+  
+  const modalImgRef = useRef<HTMLImageElement>(null);
+  
+  // Reset pan position when zoom changes
+  useEffect(() => {
+    if (zoomLevel > 1) {
+      // Only show the hint if we're zoomed in enough to pan
+      setShowPanHint(true);
+      setTimeout(() => setShowPanHint(false), 2000);
+    } else {
+      setPanPosition({ x: 0, y: 0 });
+    }
+  }, [zoomLevel]);
+  
   // Function to handle image click for larger view
   const handleImageClick = (index: number) => {
     setSelectedImage(index);
     setZoomLevel(1); // Reset zoom when opening a new image
+    setPanPosition({ x: 0, y: 0 }); // Reset pan position
     // Preload the full-size image
     setModalImage(galleryImages[index]);
   };
@@ -141,9 +161,77 @@ const Gallery = () => {
   // Function to handle zoom out
   const zoomOut = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setZoomLevel(prev => Math.max(prev - 0.25, 0.5)); // Min zoom 0.5x
+    setZoomLevel(prev => {
+      const newZoom = Math.max(prev - 0.25, 0.5); // Min zoom 0.5x
+      if (newZoom <= 1) {
+        // Reset pan position when zooming back to or below 100%
+        setPanPosition({ x: 0, y: 0 });
+      }
+      return newZoom;
+    });
   };
 
+  // Function to start panning (mouse down / touch start)
+  const startPan = (e: React.MouseEvent | React.TouchEvent) => {
+    if (zoomLevel <= 1) return; // Only allow panning when zoomed in
+    
+    e.stopPropagation();
+    setIsPanning(true);
+    
+    // Get starting position based on event type
+    if ('clientX' in e) {
+      setStartPanPosition({
+        x: e.clientX - panPosition.x,
+        y: e.clientY - panPosition.y
+      });
+    } else {
+      const touch = e.touches[0];
+      setStartPanPosition({
+        x: touch.clientX - panPosition.x,
+        y: touch.clientY - panPosition.y
+      });
+    }
+  };
+  
+  // Function to update pan position (mouse move / touch move)
+  const updatePan = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isPanning) return;
+    e.stopPropagation();
+    
+    // Calculate pan distance based on event type
+    let newX, newY;
+    if ('clientX' in e) {
+      newX = e.clientX - startPanPosition.x;
+      newY = e.clientY - startPanPosition.y;
+    } else {
+      const touch = e.touches[0];
+      newX = touch.clientX - startPanPosition.x;
+      newY = touch.clientY - startPanPosition.y;
+    }
+    
+    // Calculate constraints (how far the image can be panned)
+    let maxOffsetX = 0;
+    let maxOffsetY = 0;
+    
+    if (modalImgRef.current) {
+      const imgRect = modalImgRef.current.getBoundingClientRect();
+      // Calculate maximum allowed panning distance based on zoom level and image size
+      maxOffsetX = Math.max(0, (imgRect.width * zoomLevel - window.innerWidth) / 2);
+      maxOffsetY = Math.max(0, (imgRect.height * zoomLevel - window.innerHeight) / 2);
+    }
+    
+    // Apply constraints to prevent panning too far
+    newX = Math.min(Math.max(newX, -maxOffsetX), maxOffsetX);
+    newY = Math.min(Math.max(newY, -maxOffsetY), maxOffsetY);
+    
+    setPanPosition({ x: newX, y: newY });
+  };
+  
+  // Function to end panning (mouse up / touch end)
+  const endPan = () => {
+    setIsPanning(false);
+  };
+  
   // Function to share or copy the image URL
   const shareImage = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -234,28 +322,47 @@ const Gallery = () => {
         <div 
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
           onClick={closeModal}
+          onMouseUp={endPan}
+          onTouchEnd={endPan}
+          onMouseLeave={endPan}
+          onMouseMove={updatePan}
+          onTouchMove={updatePan}
         >
           {/* Image container with zoom */}
           <div 
-            className="relative max-w-full max-h-full overflow-hidden"
+            className="relative max-w-full max-h-full overflow-visible"
             onClick={e => e.stopPropagation()}
           >
             {modalImage ? (
               <img
+                ref={modalImgRef}
                 src={modalImage}
                 alt={`Gallery image ${selectedImage + 1} fullsize`}
                 style={{
                   maxWidth: '90vw',
                   maxHeight: '80vh',
-                  transform: `scale(${zoomLevel})`,
-                  transition: 'transform 0.3s ease',
-                  objectFit: 'contain'
+                  transform: `scale(${zoomLevel}) translate(${panPosition.x}px, ${panPosition.y}px)`,
+                  transition: isPanning ? 'none' : 'transform 0.3s ease',
+                  objectFit: 'contain',
+                  cursor: zoomLevel > 1 ? 'grab' : 'default',
+                  ...(isPanning && { cursor: 'grabbing' })
                 }}
+                onMouseDown={startPan}
+                onTouchStart={startPan}
+                draggable={false}
               />
             ) : (
               <div className="flex flex-col items-center justify-center text-white">
                 <ImageIcon size={64} className="mb-4 animate-pulse" />
                 <span>Loading image...</span>
+              </div>
+            )}
+            
+            {/* Panning hint message */}
+            {showPanHint && zoomLevel > 1 && (
+              <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded-full flex items-center gap-2 animate-fade-out transition-opacity duration-1000">
+                <Move size={20} />
+                <span>Click and drag to move around</span>
               </div>
             )}
             
